@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github Delete System</title>
+  </head>
+  <body>
+    <div id="main-section">
+      <p>Repo Name: <span id="repo-name">My Repo</span></p>
+      <input
+        id="input"
+        type="text"
+        placeholder="Type 'Repo Name' for Delete this Repo. "
+      />
+      <button id="btn" disabled>Delete</button>
+    </div>
+
+    <div>
+      <ul id="ul">
+        <li class="item">One</li>
+        <li class="item">Two</li>
+        <li class="item">Three</li>
+      </ul>
+      <textarea name="" id="textarea" cols="15" rows="2"></textarea>
+      <br />
+      <button id="add-btn">Add Items</button>
+    </div>
+
+    <script>
+      document
+        .getElementById("input")
+        .addEventListener("keyup", function (event) {
+          const typedText = event.target.value;
+          const buttonT = document.getElementById("btn");
+          const element = document.getElementById("repo-name").innerText;
+          if (typedText === element) {
+            buttonT.removeAttribute("disabled");
+          } else {
+            buttonT.setAttribute("disabled", true);
+          }
+        });
+      document.getElementById("btn").addEventListener("click", function () {
+        const dNone = document.getElementById("repo-name");
+        dNone.style.visibility = "hidden";
+        const inputField = document.getElementById("input");
+        inputField.value = "";
+        const buttonT = document.getElementById("btn");
+        buttonT.setAttribute("disabled", true);
+        const mainBody = document.getElementById("main-section");
+        const newPara = document.createElement("p");
+        newPara.innerText = "Your Repo Deleted Successfully";
+        mainBody.appendChild(newPara);
+      });
+      //   const items = document.getElementsByClassName("item");
+      //   for (const item of items) {
+      //     item.addEventListener("click", function (event) {
+      //       event.target.parentNode.removeChild(event.target);
+      //     });
+      //   }
+      document.getElementById("ul").addEventListener("click", function (event) {
+        event.target.parentNode.removeChild(event.target);
+      });
+      document.getElementById("add-btn").addEventListener("click", function () {
+        const text = document.getElementById("textarea");
+        const textValue = text.value;
+        const whereAdded = document.getElementById("ul");
+        const newLi = document.createElement("li");
+        newLi.innerText = textValue;
+        whereAdded.appendChild(newLi);
+        text.value = "";
+      });
+    </script>
+  </body>
+</html>
